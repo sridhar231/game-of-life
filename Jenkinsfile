@@ -1,9 +1,9 @@
 pipeline { 
     agent { label 'MAVEN_JDK8'}
-    stages{
+    stages {
         stage('VCS') {
             steps {
-                git url: 'https://github.com/sridhar231/game-of-life.git'
+                git url: 'https://github.com/sridhar231/game-of-life.git',
                     branch: 'declarative'
             }
         }
@@ -12,11 +12,11 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('artifact')
+        stage('artifact') {
            steps {
             archiveArtifacts artifacts: '**/target/gameoflife.war'
             junit testResults: '**/surefire-reports/TEST-*.xml'
            }
-
-    }  
+       }
+    }
 }

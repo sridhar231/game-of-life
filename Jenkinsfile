@@ -1,5 +1,6 @@
 pipeline { 
     agent { label 'MAVEN_JDK8'}
+    tools { jdk 'JDK_8_UBUNTU'}
     stages {
         stage('VCS') {
             steps {
@@ -9,7 +10,6 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'export PATH="/usr/lib/jvm/java-8-openjdk-amd64:$PATH"'
                 sh 'mvn package'
             }
         }

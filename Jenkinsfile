@@ -1,7 +1,7 @@
 pipeline { 
     agent { label 'MAVEN_JDK8'}
     tools { jdk 'JDK_8_UBUNTU'}
-    triggers { cron('* * * * *') }
+    triggers { pollSCM('5 * * * *') }
     parameters { choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean'], description: 'Maven Goal') }
     stages {
         stage('VCS') {
